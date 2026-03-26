@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPSOFT – SAP PM · PP · QM Danışmanlık</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f6f8;
+  --bg2: #eef0f4;
+  --surface: #ffffff;
+  --surface2: #f0f2f6;
+  --border: #dde1ea;
+  --border2: #c8cdd8;
+  --accent: #1a56db;
+  --accent-light: #e8effe;
+  --accent2: #e05a1e;
+  --accent2-light: #fdf0eb;
+  --green: #1a7a4a;
+  --green-light: #e6f5ee;
+  --text: #1c2333;
+  --text2: #3d4663;
+  --muted: #6b7899;
+  --white: #ffffff;
+  --shadow: 0 2px 16px rgba(28,35,51,.07);
+  --shadow-lg: 0 8px 40px rgba(28,35,51,.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 4rem;
+  background: rgba(245,246,248,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 12px rgba(28,35,51,.06);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: .6rem;
+}
+.nav-logo-mark {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-mark svg { width: 20px; height: 20px; fill: white; }
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: var(--text);
+}
+.nav-logo-text span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: .85rem; font-weight: 500; letter-spacing: .02em;
+  color: var(--text2); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  background: var(--accent); color: var(--white);
+  font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+  padding: .6rem 1.4rem; border: none; cursor: pointer;
+  border-radius: 6px; text-decoration: none;
+  transition: background .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(26,86,219,.25);
+}
+.nav-cta:hover { background: #1648c4; box-shadow: 0 4px 16px rgba(26,86,219,.35); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 4rem 5rem;
+  background: linear-gradient(160deg, #f0f4ff 0%, #f5f6f8 50%, #f0f6f0 100%);
+}
+
+.hero-pattern {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: .5;
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black, transparent);
+}
+
+.hero-blob1 {
+  position: absolute; width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,86,219,.08) 0%, transparent 65%);
+  top: -10%; left: -5%; pointer-events: none;
+}
+.hero-blob2 {
+  position: absolute; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,74,.07) 0%, transparent 65%);
+  bottom: -5%; right: 5%; pointer-events: none;
+}
+
+.hero-content {
+  position: relative; z-index: 1;
+  text-align: center; max-width: 860px;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-light);
+  padding: .4rem 1rem; border-radius: 100px;
+  margin-bottom: 2rem; border: 1px solid rgba(26,86,219,.2);
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: .95;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.hero-title .accent { color: var(--accent); }
+.hero-title .line2 {
+  display: block; font-size: 70%;
+  color: var(--text2); font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.8; color: var(--muted);
+  max-width: 580px; margin: 0 auto 2.5rem;
+}
+
+.hero-badges {
+  display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .9rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.badge.pm { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(26,86,219,.2); }
+.badge.pp { background: var(--accent2-light); color: var(--accent2); border: 1px solid rgba(224,90,30,.2); }
+.badge.qm { background: var(--green-light); color: var(--green); border: 1px solid rgba(26,122,74,.2); }
+.badge { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--accent); color: var(--white);
+  font-size: .85rem; font-weight: 600; letter-spacing: .03em;
+  padding: .85rem 2rem; border: none; cursor: pointer;
+  border-radius: 8px; text-decoration: none;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(26,86,219,.3);
+}
+.btn-primary:hover { background: #1648c4; transform: translateY(-1px); }
+
+.btn-outline {
+  background: var(--surface); color: var(--text2);
+  font-size: .85rem; font-weight: 600; letter-spacing: .03em;
+  padding: .85rem 2rem; border: 1px solid var(--border2); cursor: pointer;
+  border-radius: 8px; text-decoration: none;
+  transition: all .2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+/* ── STATS ── */
+#stats {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(4,1fr);
+  box-shadow: var(--shadow);
+}
+.stat-item {
+  padding: 2.5rem; text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative; overflow: hidden; transition: background .2s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: var(--bg); }
+.stat-item::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 50%; height: 3px;
+  background: var(--accent);
+  opacity: 0; transition: opacity .3s;
+}
+.stat-item:hover::before { opacity: 1; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem; color: var(--accent); letter-spacing: -.02em;
+  font-weight: 800; line-height: 1;
+}
+.stat-num span { color: var(--accent2); }
+.stat-label {
+  font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-top: .5rem; font-weight: 500;
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 6rem 4rem; }
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .8rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.section-eyebrow::before {
+  content: ''; width: 24px; height: 2px; background: var(--accent); flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -.02em; color: var(--text);
+  font-weight: 800; line-height: 1.1;
+}
+.section-title span { color: var(--accent); }
+
+/* ── SERVICES ── */
+#services { background: var(--bg2); }
+
+.services-header { max-width: 600px; margin-bottom: 3.5rem; }
+.services-desc { color: var(--muted); line-height: 1.8; margin-top: 1rem; font-size: .95rem; }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--surface);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: box-shadow .3s, transform .3s, border-color .3s;
+  box-shadow: var(--shadow);
+}
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.service-card.pm:hover { border-color: rgba(26,86,219,.3); }
+.service-card.pp:hover { border-color: rgba(224,90,30,.3); }
+.service-card.qm:hover { border-color: rgba(26,122,74,.3); }
+
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  border-radius: 12px 12px 0 0;
+}
+.service-card.pm::before { background: var(--accent); }
+.service-card.pp::before { background: var(--accent2); }
+.service-card.qm::before { background: var(--green); }
+
+.service-icon {
+  width: 52px; height: 52px; margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 800; letter-spacing: .05em;
+  border-radius: 10px;
+}
+.service-icon.pm { background: var(--accent-light); color: var(--accent); }
+.service-icon.pp { background: var(--accent2-light); color: var(--accent2); }
+.service-icon.qm { background: var(--green-light); color: var(--green); }
+
+.service-module {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .66rem; letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.service-card.pm .service-module { color: var(--accent); }
+.service-card.pp .service-module { color: var(--accent2); }
+.service-card.qm .service-module { color: var(--green); }
+
+.service-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.service-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.service-list li {
+  font-size: .83rem; color: var(--text2); line-height: 1.55;
+  padding-left: 1.1rem; position: relative;
+}
+.service-list li::before {
+  content: '›'; position: absolute; left: 0; font-weight: 700;
+}
+.service-card.pm .service-list li::before { color: var(--accent); }
+.service-card.pp .service-list li::before { color: var(--accent2); }
+.service-card.qm .service-list li::before { color: var(--green); }
+
+/* ── TEAM / CONSULTANTS ── */
+#team { background: var(--surface); }
+
+.team-header { max-width: 700px; margin-bottom: 3.5rem; }
+.team-header p { color: var(--muted); margin-top: 1rem; line-height: 1.8; font-size: .95rem; }
+
+.team-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+}
+
+.consultant-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow .3s, transform .3s;
+}
+.consultant-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+
+.consultant-header {
+  padding: 2rem 2rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent) 0%, #2563eb 100%);
+  color: white;
+  display: flex; align-items: center; gap: 1.2rem;
+}
+.consultant-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+  flex-shrink: 0; border: 2px solid rgba(255,255,255,.3);
+}
+.consultant-name {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  line-height: 1.2;
+}
+.consultant-role { font-size: .78rem; opacity: .85; margin-top: .25rem; font-weight: 500; }
+
+.consultant-body { padding: 1.5rem 2rem 2rem; }
+.consultant-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.consultant-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .3rem .7rem; border-radius: 4px; font-weight: 500;
+}
+.tag-pm { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(26,86,219,.2); }
+.tag-pp { background: var(--accent2-light); color: var(--accent2); border: 1px solid rgba(224,90,30,.2); }
+.tag-qm { background: var(--green-light); color: var(--green); border: 1px solid rgba(26,122,74,.2); }
+.tag-abap { background: #f3f0ff; color: #6d28d9; border: 1px solid rgba(109,40,217,.2); }
+.tag-s4 { background: #fff7ed; color: #c2410c; border: 1px solid rgba(194,65,12,.2); }
+
+.consultant-bio { font-size: .84rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+
+.consultant-projects { margin-bottom: 1.5rem; }
+.cp-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .63rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .75rem; font-weight: 500;
+}
+.project-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.project-chip {
+  font-size: .75rem; color: var(--text2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: .3rem .7rem; cursor: pointer;
+  transition: all .2s; font-weight: 500;
+}
+.project-chip:hover {
+  background: var(--accent-light); color: var(--accent);
+  border-color: rgba(26,86,219,.3);
+}
+
+.view-all-btn {
+  width: 100%; padding: .7rem;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; font-size: .82rem; font-weight: 600;
+  color: var(--text2); transition: all .2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.view-all-btn:hover {
+  background: var(--accent); color: white; border-color: var(--accent);
+}
+
+/* ── PROJECTS MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(28,35,51,.55);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal-box {
+  background: var(--surface);
+  border-radius: 16px;
+  max-width: 860px; width: 100%;
+  max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(28,35,51,.2);
+  transform: translateY(20px) scale(.97);
+  transition: transform .3s;
+}
+.modal-overlay.open .modal-box { transform: none; }
+
+.modal-head {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  position: sticky; top: 0; background: var(--surface); z-index: 1;
+}
+.modal-head-info {}
+.modal-head-name {
+  font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+  color: var(--text); margin-bottom: .25rem;
+}
+.modal-head-role { font-size: .84rem; color: var(--muted); }
+.modal-close {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--bg); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: var(--muted); transition: all .2s; flex-shrink: 0;
+}
+.modal-close:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+.modal-body { padding: 2rem 2.5rem 2.5rem; }
+
+.modal-tabs {
+  display: flex; gap: 0; margin-bottom: 2rem;
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden;
+}
+.modal-tab {
+  flex: 1; padding: .65rem 1rem; text-align: center;
+  font-size: .8rem; font-weight: 600; cursor: pointer;
+  border: none; background: transparent; color: var(--muted);
+  transition: all .2s; font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.modal-tab.active { background: var(--accent); color: white; }
+.modal-tab:not(:last-child) { border-right: 1px solid var(--border); }
+
+.modal-panel { display: none; }
+.modal-panel.active { display: block; }
+
+.project-table { width: 100%; border-collapse: collapse; }
+.project-table th {
+  text-align: left; padding: .75rem 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); background: var(--bg);
+  border-bottom: 1px solid var(--border); font-weight: 500;
+}
+.project-table td {
+  padding: .85rem 1rem; font-size: .82rem; color: var(--text2);
+  border-bottom: 1px solid var(--bg2); vertical-align: top;
+}
+.project-table tr:last-child td { border-bottom: none; }
+.project-table tr:hover td { background: var(--bg); }
+.proj-company { font-weight: 600; color: var(--text); }
+.proj-module-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; letter-spacing: .08em;
+  padding: .2rem .5rem; border-radius: 4px; font-weight: 500;
+}
+.proj-module-badge.pm { background: var(--accent-light); color: var(--accent); }
+.proj-module-badge.pp { background: var(--accent2-light); color: var(--accent2); }
+.proj-module-badge.qm { background: var(--green-light); color: var(--green); }
+.proj-module-badge.ps { background: #f5f3ff; color: #7c3aed; }
+.proj-sector-tag {
+  display: inline-block;
+  font-size: .72rem; font-weight: 500; color: var(--muted);
+}
+
+.detail-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.detail-company {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--text); margin-bottom: .5rem; display: flex; align-items: center; gap: .6rem;
+}
+.detail-meta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .8rem;
+}
+.detail-meta span { display: flex; align-items: center; gap: .3rem; }
+.detail-resp {
+  font-size: .83rem; color: var(--text2); line-height: 1.7;
+}
+
+/* ── APPROACH ── */
+#approach { background: var(--bg2); }
+
+.approach-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+
+.approach-text .section-title { margin-bottom: 1rem; }
+.approach-text > p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-size: .95rem; }
+
+.approach-steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800; color: var(--border2);
+  line-height: 1; flex-shrink: 0; width: 2rem; text-align: right;
+  transition: color .3s;
+}
+.step:hover .step-num { color: var(--accent); }
+.step-name { font-weight: 600; color: var(--text); font-size: .9rem; margin-bottom: .35rem; }
+.step-desc { font-size: .83rem; color: var(--muted); line-height: 1.65; }
+
+.approach-visual {
+  display: flex; align-items: center; justify-content: center;
+}
+
+.hex-grid {
+  display: grid; grid-template-columns: repeat(3, 110px); gap: 10px;
+}
+.hex {
+  width: 110px; height: 95px;
+  clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+  background: var(--surface);
+  transition: all .3s; cursor: default;
+}
+.hex:hover { background: var(--accent-light); }
+.hex-label {
+  font-family: 'Syne', sans-serif;
+  font-size: .9rem; font-weight: 700; color: var(--text);
+}
+.hex-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .5rem; letter-spacing: .12em; color: var(--muted);
+  text-transform: uppercase;
+}
+.hex.center { background: var(--accent); }
+.hex.center .hex-label { color: white; }
+.hex.center .hex-sub { color: rgba(255,255,255,.7); }
+
+/* ── WHY ── */
+#why { background: var(--surface); }
+
+.why-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
+  margin-top: 3rem;
+}
+.why-card {
+  padding: 1.8rem; border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: all .3s; box-shadow: var(--shadow);
+}
+.why-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: rgba(26,86,219,.25);
+  background: var(--accent-light);
+}
+.why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.why-title { font-weight: 700; color: var(--text); font-size: .92rem; margin-bottom: .5rem; }
+.why-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+
+/* ── CONTACT ── */
+#contact { position: relative; overflow: hidden; background: var(--bg2); }
+
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+}
+
+.contact-left .section-title { margin-bottom: 1rem; }
+.contact-left > p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-size: .95rem; }
+
+.contact-info { display: flex; flex-direction: column; gap: .85rem; }
+.info-item {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .85rem; color: var(--text2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: .8rem 1rem;
+}
+.info-icon {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--accent-light); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; flex-shrink: 0;
+}
+.info-block {}
+.info-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .61rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); display: block; margin-bottom: .15rem;
+}
+.info-value { font-weight: 500; color: var(--text); font-size: .84rem; }
+.info-value a { color: var(--accent); text-decoration: none; }
+.info-value a:hover { text-decoration: underline; }
+
+.contact-form {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem;
+  box-shadow: var(--shadow);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .25rem; }
+.form-group label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .64rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+.form-group input, .form-group select, .form-group textarea {
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); padding: .75rem 1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: .85rem;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  width: 100%; border-radius: 8px;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(26,86,219,.1);
+}
+.form-group select { appearance: none; cursor: pointer; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  background: var(--accent); color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .85rem; font-weight: 600; letter-spacing: .03em;
+  padding: .9rem; border: none; cursor: pointer;
+  border-radius: 8px; transition: all .2s; margin-top: .5rem; width: 100%;
+  box-shadow: 0 4px 16px rgba(26,86,219,.3);
+}
+.form-submit:hover { background: #1648c4; transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 4rem;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: .5rem;
+}
+.footer-logo-mark {
+  width: 28px; height: 28px; background: var(--accent);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+}
+.footer-logo-mark svg { width: 15px; height: 15px; fill: white; }
+.footer-logo-text {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
+  color: var(--text);
+}
+.footer-logo-text span { color: var(--accent); }
+.footer-copy { font-size: .75rem; color: var(--muted); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--accent); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-tag    { animation: fadeUp .6s ease both .1s; }
+.hero-title  { animation: fadeUp .6s ease both .2s; }
+.hero-sub    { animation: fadeUp .6s ease both .3s; }
+.hero-badges { animation: fadeUp .6s ease both .4s; }
+.hero-btns   { animation: fadeUp .6s ease both .5s; }
+
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  #hero { padding: 7rem 1.5rem 3rem; }
+  #stats { grid-template-columns: repeat(2,1fr); }
+  .services-grid, .team-grid { grid-template-columns: 1fr; }
+  .approach-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .why-grid { grid-template-columns: repeat(2,1fr); }
+  .hex-grid { display: none; }
+  footer { flex-direction: column; align-items: center; text-align: center; }
+  .modal-box { margin: 0; border-radius: 12px; }
+  .modal-head, .modal-body { padding: 1.5rem; }
+  nav { padding: 1rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20"><path d="M10 2L3 7v6l7 5 7-5V7L10 2zm0 2.5l5 3.5v4.5L10 15.5 5 12.5V8l5-3.5z"/></svg>
+    </div>
+    <div class="nav-logo-text">SP<span>SOFT</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Hizmetler</a></li>
+    <li><a href="#team">Danışmanlar</a></li>
+    <li><a href="#approach">Yaklaşım</a></li>
+    <li><a href="#why">Neden Biz</a></li>
+    <li><a href="#contact">İletişim</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Teklif Al</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">SAP Danışmanlık Hizmetleri · İstanbul, Türkiye</div>
+    <h1 class="hero-title">
+      <span class="accent">SPSOFT</span><br>
+      <span class="line2">Endüstriyel SAP Uzmanlığı</span>
+    </h1>
+    <p class="hero-sub">
+      PM · PP · QM modüllerinde uçtan uca SAP danışmanlığı.
+      Süreç analizi, implementasyon, ABAP geliştirme ve süregelen destek hizmetleriyle üretim operasyonlarınızı dijitalleştiriyoruz.
+    </p>
+    <div class="hero-badges">
+      <span class="badge pm">SAP PM</span>
+      <span class="badge pp">SAP PP</span>
+      <span class="badge qm">SAP QM</span>
+      <span class="badge">ABAP Dev</span>
+      <span class="badge">S/4HANA</span>
+      <span class="badge">SAP Fiori</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Proje Başlat</a>
+      <a href="#services" class="btn-outline">Hizmetleri Gör</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat-item reveal">
+    <div class="stat-num">12<span>+</span></div>
+    <div class="stat-label">Yıl Deneyim</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">80<span>+</span></div>
+    <div class="stat-label">Tamamlanan Proje</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">3</div>
+    <div class="stat-label">SAP Modülü</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">%98</div>
+    <div class="stat-label">Müşteri Memnuniyeti</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">Hizmetler</div>
+    <h2 class="section-title">Uzmanlaştığımız<br><span>SAP Modülleri</span></h2>
+    <p class="services-desc">
+      Fabrika bakımından üretim planlamaya, kalite yönetiminden ABAP geliştirmeye kadar SAP ekosisteminin kritik modüllerinde kapsamlı danışmanlık sunuyoruz.
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card pm reveal">
+      <div class="service-icon pm">PM</div>
+      <div class="service-module">Plant Maintenance</div>
+      <div class="service-title">Tesis Bakım Yönetimi</div>
+      <ul class="service-list">
+        <li>Fonksiyonel lokasyon ve ekipman yönetimi</li>
+        <li>Önleyici & kestirimci bakım planlaması</li>
+        <li>İş emri (Work Order) süreci tasarımı</li>
+        <li>MHIS, AUFK tablo konfigürasyonu</li>
+        <li>Bildirim (Notification) yönetimi</li>
+        <li>Ölçüm noktaları ve sayaç tanımları</li>
+        <li>User exit & ABAP validasyon geliştirme</li>
+        <li>Bakım maliyeti raporlaması & ALV</li>
+        <li>SAP Fiori mobil iş emri yönetimi</li>
+      </ul>
+    </div>
+    <div class="service-card pp reveal">
+      <div class="service-icon pp">PP</div>
+      <div class="service-module">Production Planning</div>
+      <div class="service-title">Üretim Planlama</div>
+      <ul class="service-list">
+        <li>MRP (Malzeme İhtiyaç Planlaması) kurulumu</li>
+        <li>Üretim emri (Production Order) yönetimi</li>
+        <li>BOM (Malzeme Listesi) yapılandırması</li>
+        <li>Routing ve iş merkezi tanımları</li>
+        <li>Kapasite planlama & yük dengeleme</li>
+        <li>Proses endüstrisi (PP-PI) entegrasyonu</li>
+        <li>SOP & Talep Yönetimi</li>
+        <li>Üretim maliyet analizi raporlaması</li>
+      </ul>
+    </div>
+    <div class="service-card qm reveal">
+      <div class="service-icon qm">QM</div>
+      <div class="service-module">Quality Management</div>
+      <div class="service-title">Kalite Yönetimi</div>
+      <ul class="service-list">
+        <li>Muayene noktaları & muayene planı tasarımı</li>
+        <li>Kontrol çizelgesi konfigürasyonu</li>
+        <li>Gelen / Proses / Sevkiyat muayenesi</li>
+        <li>Hata kodları ve kusur katalog yönetimi</li>
+        <li>Q-Bildirim (8D/CAR) süreçleri</li>
+        <li>Sertifika yönetimi (CoA)</li>
+        <li>Kalite maliyeti analizi</li>
+        <li>Müşteri şikâyet & DNC süreçleri</li>
+        <li>Spektrometre & sistem entegrasyonları</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM / CONSULTANTS -->
+<section id="team">
+  <div class="team-header reveal">
+    <div class="section-eyebrow">Danışmanlarımız</div>
+    <h2 class="section-title">Uzman <span>Ekibimiz</span></h2>
+    <p>10 yılı aşkın sahada kazanılmış deneyimle enerji, otomotiv, gıda, cam ve daha pek çok sektörde başarıyla teslim edilmiş projelere imza attık. Danışmanlarımızın projeleri hakkında detaylı bilgi almak için kartlara tıklayın.</p>
+  </div>
+  <div class="team-grid">
+
+    <!-- Ahmet DAĞ -->
+    <div class="consultant-card reveal">
+      <div class="consultant-header">
+        <div class="consultant-avatar">AD</div>
+        <div>
+          <div class="consultant-name">Ahmet DAĞ</div>
+          <div class="consultant-role">SAP Lojistik Uygulamaları Danışmanı</div>
+        </div>
+      </div>
+      <div class="consultant-body">
+        <div class="consultant-tags">
+          <span class="consultant-tag tag-pm">SAP PM</span>
+          <span class="consultant-tag tag-qm">SAP QM</span>
+          <span class="consultant-tag tag-pp">SAP PP</span>
+          <span class="consultant-tag tag-abap">ABAP</span>
+          <span class="consultant-tag tag-s4">S/4HANA</span>
+        </div>
+        <p class="consultant-bio">+10 yıldır SAP Lojistik Uygulamaları, özellikle Bakım Onarım ve Kalite Yönetimi modül projelerinde yer almaktadır. Endüstri Mühendisi, akıcı İngilizce bilgisi ile uluslararası projelerde aktif rol üstlenmektedir.</p>
+        <div class="consultant-projects">
+          <div class="cp-label">Öne Çıkan Projeler</div>
+          <div class="project-chips">
+            <span class="project-chip" onclick="openModal('ahmet','projects')">Şişecam S/4HANA</span>
+            <span class="project-chip" onclick="openModal('ahmet','projects')">Borusan Boru</span>
+            <span class="project-chip" onclick="openModal('ahmet','projects')">Sumitomo Electric</span>
+            <span class="project-chip" onclick="openModal('ahmet','projects')">Rehau Otomotiv</span>
+          </div>
+        </div>
+        <button class="view-all-btn" onclick="openModal('ahmet','projects')">Tüm Projeleri Gör →</button>
+      </div>
+    </div>
+
+    <!-- Uğur ÇAKMAK -->
+    <div class="consultant-card reveal">
+      <div class="consultant-header" style="background: linear-gradient(135deg, #1a7a4a 0%, #15803d 100%);">
+        <div class="consultant-avatar">UÇ</div>
+        <div>
+          <div class="consultant-name">Uğur ÇAKMAK</div>
+          <div class="consultant-role">SAP Lojistik Uygulamaları Danışmanı</div>
+        </div>
+      </div>
+      <div class="consultant-body">
+        <div class="consultant-tags">
+          <span class="consultant-tag tag-pm">SAP PM</span>
+          <span class="consultant-tag tag-qm">SAP QM</span>
+          <span class="consultant-tag tag-s4">S/4HANA</span>
+          <span class="consultant-tag tag-abap">Fiori</span>
+        </div>
+        <p class="consultant-bio">+3 yıldır SAP Lojistik Uygulamaları, özellikle Bakım Onarım ve Kalite Yönetimi modül projelerinde yer almaktadır. Elektrik Elektronik Mühendisi; Şişecam, Borusan ve Sumitomo gibi büyük firmalarda uluslararası proje deneyimi mevcuttur.</p>
+        <div class="consultant-projects">
+          <div class="cp-label">Öne Çıkan Projeler</div>
+          <div class="project-chips">
+            <span class="project-chip" onclick="openModal('ugur','projects')">Şişecam QM</span>
+            <span class="project-chip" onclick="openModal('ugur','projects')">Borusan Boru PM</span>
+            <span class="project-chip" onclick="openModal('ugur','projects')">Rönesans Holding</span>
+            <span class="project-chip" onclick="openModal('ugur','projects')">Sumitomo QM</span>
+          </div>
+        </div>
+        <button class="view-all-btn" onclick="openModal('ugur','projects')">Tüm Projeleri Gör →</button>
+      </div>
+    </div>
+
+    <!-- Mürsel UÇAR -->
+    <div class="consultant-card reveal">
+      <div class="consultant-header" style="background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);">
+        <div class="consultant-avatar">MU</div>
+        <div>
+          <div class="consultant-name">Mürsel UÇAR</div>
+          <div class="consultant-role">SAP Lojistik Uygulamaları Danışmanı</div>
+        </div>
+      </div>
+      <div class="consultant-body">
+        <div class="consultant-tags">
+          <span class="consultant-tag tag-pm">SAP PM</span>
+          <span class="consultant-tag tag-qm">SAP QM</span>
+          <span class="consultant-tag tag-s4">S/4HANA</span>
+          <span class="consultant-tag tag-abap">LSMW</span>
+        </div>
+        <p class="consultant-bio">SAP PM ve QM modüllerinde 1 yılı aşkın proje deneyimine sahiptir. Endüstri Mühendisi; Migration Cockpit, LSMW, Fiori uygulamaları ve teknik dokümentasyon konularında güçlü bir altyapıya sahiptir.</p>
+        <div class="consultant-projects">
+          <div class="cp-label">Öne Çıkan Projeler</div>
+          <div class="project-chips">
+            <span class="project-chip" onclick="openModal('mursel','projects')">Rönesans Holding PM</span>
+            <span class="project-chip" onclick="openModal('mursel','projects')">Sumitomo Bordnetze</span>
+            <span class="project-chip" onclick="openModal('mursel','projects')">Opsan S/4HANA</span>
+          </div>
+        </div>
+        <button class="view-all-btn" onclick="openModal('mursel','projects')">Tüm Projeleri Gör →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="approach-inner">
+    <div class="approach-text reveal">
+      <div class="section-eyebrow">Metodoloji</div>
+      <h2 class="section-title">Nasıl<br><span>Çalışıyoruz?</span></h2>
+      <p>
+        Her projede iş süreçlerini derinlemesine anlayarak başlıyor, SAP konfigürasyonunu gerçek operasyonel ihtiyaçlara göre şekillendiriyoruz.
+      </p>
+      <div class="approach-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-name">Süreç Analizi & AS-IS</div>
+            <div class="step-desc">Mevcut iş akışları haritalanır, SAP'a geçiş boşlukları tespit edilir.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-name">Tasarım & Blueprint</div>
+            <div class="step-desc">TO-BE süreç tasarımı, konfigürasyon şablonu ve ABAP geliştirme planı hazırlanır.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-name">Realizasyon & Test</div>
+            <div class="step-desc">Konfigürasyon, geliştirme, birim test ve entegrasyon testleri yürütülür.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-name">Canlıya Geçiş & Destek</div>
+            <div class="step-desc">Go-live planlaması, kullanıcı eğitimi ve cutover yönetimi ile son kullanıcı desteği.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="approach-visual reveal">
+      <div class="hex-grid">
+        <div class="hex"><div class="hex-label">MRP</div><div class="hex-sub">PP</div></div>
+        <div class="hex center"><div class="hex-label">SAP</div><div class="hex-sub">Core</div></div>
+        <div class="hex"><div class="hex-label">BOM</div><div class="hex-sub">PP</div></div>
+        <div class="hex"><div class="hex-label">Order</div><div class="hex-sub">PM</div></div>
+        <div class="hex"><div class="hex-label">ABAP</div><div class="hex-sub">Dev</div></div>
+        <div class="hex"><div class="hex-label">Audit</div><div class="hex-sub">QM</div></div>
+        <div class="hex"><div class="hex-label">Fiori</div><div class="hex-sub">Mobile</div></div>
+        <div class="hex"><div class="hex-label">CoA</div><div class="hex-sub">QM</div></div>
+        <div class="hex"><div class="hex-label">ALV</div><div class="hex-sub">Report</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-eyebrow">Neden SPSOFT</div>
+    <h2 class="section-title">Farkımız <span>Ne?</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">⚙️</div>
+      <div class="why-title">Modül Derinliği</div>
+      <div class="why-desc">Yalnızca PM, PP ve QM'e odaklanıyor; bu modüllerin tüm detaylarını ve birbirleriyle entegrasyonlarını biliyoruz.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">ABAP Kapasitesi</div>
+      <div class="why-desc">User exit, BADI, ALV raporlama ve özel geliştirmeler dahili kaynaklarla yapılır; dışarıya bağımlılık yoktur.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏭</div>
+      <div class="why-title">Endüstri Bilgisi</div>
+      <div class="why-desc">Üretim, enerji ve proses sektörlerinde çalışmış danışmanlarımız saha gerçekliğini SAP'a taşır.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">📊</div>
+      <div class="why-title">Sonuç Odaklı</div>
+      <div class="why-desc">KPI tanımları proje başında belirlenir; teslim edilen sistem ölçülebilir iyileştirme yaratır.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="section-eyebrow">İletişim</div>
+      <h2 class="section-title">Projenizi<br><span>Konuşalım</span></h2>
+      <p>
+        SAP PM, PP veya QM konusunda bir projeniz mi var? Mevcut sisteminizde sorun mu yaşıyorsunuz? Formu doldurun, 24 saat içinde geri dönelim.
+      </p>
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-block">
+            <span class="info-label">E-Posta</span>
+            <span class="info-value"><a href="mailto:spsoftconsultancy@gmail.com">spsoftconsultancy@gmail.com</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-block">
+            <span class="info-label">Telefon — Mürsel UÇAR</span>
+            <span class="info-value"><a href="tel:+905416166391">+90 541 616 63 91</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-block">
+            <span class="info-label">Telefon — Uğur ÇAKMAK</span>
+            <span class="info-value"><a href="tel:+905411906661">+90 541 190 66 61</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-block">
+            <span class="info-label">Telefon — Ahmet DAĞ</span>
+            <span class="info-value"><a href="tel:+905444086669">+90 544 408 66 69</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🔗</div>
+          <div class="info-block">
+            <span class="info-label">LinkedIn</span>
+            <span class="info-value"><a href="https://linkedin.com/company/spsoft-official" target="_blank">linkedin.com/company/spsoft-official</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-block">
+            <span class="info-label">Konum</span>
+            <span class="info-value">İstanbul, Türkiye</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div class="info-block">
+            <span class="info-label">Çalışma Saatleri</span>
+            <span class="info-value">Pzt – Cum · 09:00 – 18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ad Soyad</label>
+          <input type="text" placeholder="Adınız Soyadınız">
+        </div>
+        <div class="form-group">
+          <label>Şirket</label>
+          <input type="text" placeholder="Şirket Adı">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-Posta</label>
+        <input type="email" placeholder="ornek@sirket.com">
+      </div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="tel" placeholder="+90 5XX XXX XX XX">
+      </div>
+      <div class="form-group">
+        <label>İlgilendiğiniz Modül</label>
+        <select>
+          <option>Seçiniz...</option>
+          <option>SAP PM – Tesis Bakım Yönetimi</option>
+          <option>SAP PP – Üretim Planlama</option>
+          <option>SAP QM – Kalite Yönetimi</option>
+          <option>ABAP Geliştirme</option>
+          <option>SAP Fiori / Mobil</option>
+          <option>Tüm Modüller</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mesajınız</label>
+        <textarea placeholder="Projeniz veya ihtiyacınız hakkında kısaca bilgi verin..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Mesajınız alındı! En kısa sürede dönüş yapacağız.')">Gönder →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">
+      <svg viewBox="0 0 20 20"><path d="M10 2L3 7v6l7 5 7-5V7L10 2zm0 2.5l5 3.5v4.5L10 15.5 5 12.5V8l5-3.5z"/></svg>
+    </div>
+    <div class="footer-logo-text">SP<span>SOFT</span></div>
+  </div>
+  <div class="footer-copy">© 2025 SPSOFT Danışmanlık. Tüm hakları saklıdır.</div>
+  <div class="footer-links">
+    <a href="#">Gizlilik</a>
+    <a href="#">Kullanım Koşulları</a>
+    <a href="https://linkedin.com/company/spsoft-official" target="_blank">LinkedIn</a>
+    <a href="#contact">İletişim</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-head">
+      <div class="modal-head-info">
+        <div class="modal-head-name" id="modalName"></div>
+        <div class="modal-head-role" id="modalRole"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab('projects',this)">Proje Listesi</button>
+        <button class="modal-tab" onclick="switchTab('details',this)">Proje Detayları</button>
+        <button class="modal-tab" onclick="switchTab('profile',this)">Profil</button>
+      </div>
+      <div class="modal-panel active" id="panel-projects"></div>
+      <div class="modal-panel" id="panel-details"></div>
+      <div class="modal-panel" id="panel-profile"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const consultants = {
+  ahmet: {
+    name: "Ahmet DAĞ",
+    role: "SAP Lojistik Uygulamaları Danışmanı · +10 Yıl Deneyim",
+    profile: `<p style="color:var(--text2);line-height:1.8;font-size:.9rem;margin-bottom:1rem;">Ahmet DAĞ, +10 yıldır SAP Lojistik Uygulamaları; özellikle Bakım Onarım ve Kalite Yönetimi modül projelerinde yer almaktadır.</p>
+      <p style="color:var(--text2);line-height:1.8;font-size:.9rem;margin-bottom:1rem;">Proje yönetiminin tüm aşamalarında (kick-off, kavramsal tasarım, sistem tasarımı, geliştirme, anaveri yönetimi, canlıya geçiş ve kullanıcı eğitimi) deneyim sahibidir.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;">
+        <span style="background:var(--accent-light);color:var(--accent);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP PM</span>
+        <span style="background:var(--green-light);color:var(--green);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP QM</span>
+        <span style="background:var(--accent2-light);color:var(--accent2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP PP</span>
+        <span style="background:#f5f3ff;color:#7c3aed;padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">ABAP</span>
+        <span style="background:#fff7ed;color:#c2410c;padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">S/4HANA</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP Fiori</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">İngilizce (Akıcı)</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">Hacettepe Üniv. – End. Müh.</span>
+      </div>`,
+    projects: [
+      {company:"Aksa Enerji-Doğalgaz A.Ş.",sector:"Enerji",module:"PM",type:"SAP İmplementasyonu",duration:"5 Ay"},
+      {company:"İskur A.Ş.",sector:"Tekstil",module:"PP",type:"SAP Template Proje",duration:"3 Ay"},
+      {company:"Aksa Servis ve Kiralama A.Ş.",sector:"Servis & Kiralama",module:"PM",type:"SAP İmplementasyonu",duration:"6 Ay"},
+      {company:"Aksa Elektrik A.Ş.",sector:"Elektrik Dağıtım",module:"PP-PM",type:"SAP MRP İmplementasyonu",duration:"2 Ay"},
+      {company:"CRH Otomotiv A.Ş.",sector:"Otomotiv",module:"PP",type:"SAP Destek",duration:"2 Ay"},
+      {company:"Balparmak",sector:"Gıda",module:"QM",type:"SAP İmplementasyonu",duration:"2 Ay"},
+      {company:"KCETAŞ",sector:"Elektrik Dağıtım",module:"PM",type:"SAP İmplementasyonu",duration:"1 Yıl"},
+      {company:"TOKSAN",sector:"Otomotiv",module:"PS",type:"SAP İmplementasyonu",duration:"3 Ay"},
+      {company:"TOKSAN",sector:"Otomotiv",module:"PM",type:"SAP İmplementasyonu",duration:"3 Ay"},
+      {company:"AYNES",sector:"Gıda",module:"PM",type:"SAP İmplementasyonu",duration:"8 Ay"},
+      {company:"AYNES",sector:"Gıda",module:"QM",type:"SAP İmplementasyonu",duration:"2 Ay"},
+      {company:"MECAPLAST",sector:"Otomotiv",module:"PM",type:"Template Proje",duration:"2 Ay"},
+      {company:"ASSAN Alüminyum",sector:"Maden",module:"QM",type:"SAP İmplementasyonu",duration:"14 Ay"},
+      {company:"TEKSAN Jeneratör",sector:"Jeneratör",module:"PM",type:"SAP Fiori Projesi",duration:"4 Ay"},
+      {company:"AKSA Doğalgaz",sector:"Doğalgaz Dağıtım",module:"PM",type:"Mobil Fiori Application",duration:"7 Ay"},
+      {company:"Anadolu Etap",sector:"Gıda",module:"PM",type:"SAP S/4HANA İmplementasyonu",duration:"7 Ay"},
+      {company:"Anadolu Etap",sector:"Gıda",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"7 Ay"},
+      {company:"Kunt Electronic",sector:"Elektronik",module:"QM",type:"Canlı Destek",duration:"3 Ay"},
+      {company:"Response Ortho",sector:"Maden",module:"QM",type:"SAP İmplementasyonu",duration:"5 Ay"},
+      {company:"Vitra Karo",sector:"Fayans",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"4 Ay"},
+      {company:"ÇokYaşar",sector:"Gıda",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"6 Ay"},
+      {company:"Şişecam",sector:"Cam",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"20 Ay"},
+      {company:"Borusan Boru",sector:"Boru",module:"PM",type:"SAP S/4HANA İmplementasyonu",duration:"6 Ay"},
+      {company:"Rehau Otomotiv",sector:"Otomotiv",module:"PM",type:"S/4HANA Projesi",duration:"4 Ay"},
+      {company:"Sumitomo Electric Bordnetze",sector:"Otomotiv",module:"PM",type:"S/4HANA Projesi",duration:"6 Ay"},
+      {company:"Sumitomo Electric Bordnetze",sector:"Otomotiv",module:"QM",type:"S/4HANA Projesi",duration:"6 Ay"},
+    ],
+    details: [
+      {company:"Şişecam",location:"İstanbul",period:"02.2023 – 12.2024",duration:"20 Ay",sector:"Cam",project:"SAP S/4HANA İmplementasyonu",role:"QM Danışmanı",resp:"ABAP gereksinim ihtiyaçlarının karşılanması, Hammadde Girdi Kontrolleri, Proses Kontrolleri, Kalite bildirimleri, Kalite Sertifikaları."},
+      {company:"Borusan Boru",location:"İstanbul",period:"08.2024 – 01.2025",duration:"6 Ay",sector:"Boru",project:"SAP S/4HANA İmplementasyonu",role:"PM Danışmanı",resp:"Yerinde Arızi, Planlı, Durum bazlı ve Yenileme bakım süreçlerini içeren PM modülünün kurulması, Abap gereksinimlerinin karşılanması, Fiori Mobil Teyit Ekranı."},
+      {company:"Sumitomo Electric Bordnetze",location:"Orhei / Moldova",period:"04.2025 – 10.2025",duration:"6 Ay",sector:"Otomotiv",project:"S/4HANA Projesi",role:"PM & QM Danışmanı",resp:"Arıza, Önleyici, Koşula Dayalı ve Yenileme Bakımı; tam döngü İş Planı (Blueprint) Tasarımı ve Customizing. Kalite kontrol işlemleri, Müşteri & Satıcı Şikayetleri, Süreç tasarımı ve Uyarlama."},
+      {company:"Rehau Otomotiv",location:"Bavyera / Almanya",period:"02.2025 – 06.2025",duration:"4 Ay",sector:"Otomotiv",project:"S/4HANA Projesi",role:"PM Danışmanı",resp:"Ana Veri Aktarımı, Cutover Süreci, Canlıya Geçiş Desteği."},
+      {company:"AKSA Doğalgaz",location:"İstanbul",period:"02.2018 – 09.2018",duration:"7 Ay",sector:"Doğalgaz Dağıtım",project:"Mobil Fiori Application",role:"PM Danışmanı",resp:"Mobil İş emri yönetimi, katalog girişleri, malzeme çıkışı, teyit girişi, Stok görüntüleme, sayaç girişleri, Bakım Planı ve takvimi, Ekipman Yönetimi, Harita."},
+      {company:"KCETAŞ",location:"Kayseri",period:"06.2013 – 06.2014",duration:"1 Yıl",sector:"Elektrik Dağıtım",project:"SAP İmplementasyonu",role:"PM Danışmanı",resp:"Arızi, Planlı, Durum bazlı ve Yenileme bakım süreçleri; Microsoft CRM-SAP entegrasyonu, CBS-SAP entegrasyonu, Mobil uygulama geliştirmesi."},
+    ]
+  },
+  ugur: {
+    name: "Uğur ÇAKMAK",
+    role: "SAP Lojistik Uygulamaları Danışmanı · +3 Yıl Deneyim",
+    profile: `<p style="color:var(--text2);line-height:1.8;font-size:.9rem;margin-bottom:1rem;">Uğur ÇAKMAK, +3 yıldır SAP Lojistik Uygulamaları; özellikle Bakım Onarım ve Kalite Yönetimi modül projelerinde yer almaktadır.</p>
+      <p style="color:var(--text2);line-height:1.8;font-size:.9rem;margin-bottom:1rem;">Proje yönetiminin tüm aşamalarında kick-off, kavramsal tasarım, sistem tasarımı, geliştirme, anaveri yönetimi, canlıya geçiş ve kullanıcı eğitimi tecrübesine sahiptir.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;">
+        <span style="background:var(--accent-light);color:var(--accent);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP PM</span>
+        <span style="background:var(--green-light);color:var(--green);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP QM</span>
+        <span style="background:#fff7ed;color:#c2410c;padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">S/4HANA</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP Fiori</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">İngilizce</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">Sakarya Üniv. – Elk.-Elek. Müh.</span>
+      </div>`,
+    projects: [
+      {company:"Şişecam",sector:"Cam",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"12 Ay"},
+      {company:"Aksa Doğalgaz",sector:"Enerji",module:"PM",type:"SAP Destek",duration:"7 Ay"},
+      {company:"Polat Makina",sector:"Makine",module:"PM",type:"SAP Süreç İyileştirme",duration:"6 Ay"},
+      {company:"Tab İlaç",sector:"İlaç",module:"QM",type:"SAP Destek",duration:"5 Ay"},
+      {company:"Borusan Boru",sector:"Boru",module:"PM",type:"S/4HANA İmplementasyonu",duration:"6 Ay"},
+      {company:"Rönesans Holding",sector:"Gayrimenkul / Enerji / Sağlık",module:"PM",type:"S/4HANA Destek",duration:"10 Ay"},
+      {company:"Sumitomo Electric Bordnetze",sector:"Otomotiv",module:"QM",type:"SAP S/4HANA İmplementasyonu",duration:"6 Ay"},
+    ],
+    details: [
+      {company:"Şişecam",location:"İstanbul",period:"02.2023 – 01.2024",duration:"12 Ay",sector:"Cam",project:"SAP S/4HANA İmplementasyonu",role:"QM Danışmanı",resp:"ABAP gereksinim ihtiyaçlarının karşılanması, Hammadde Girdi Kontrolleri, Proses Kontrolleri, Kalite bildirimleri, Anaveri aktarımı."},
+      {company:"Borusan Boru",location:"İstanbul",period:"08.2024 – 02.2025",duration:"6 Ay",sector:"Boru",project:"S/4HANA İmplementasyonu",role:"PM Danışmanı",resp:"Yerinde Arızi, Planlı, Durum bazlı ve Yenileme bakım süreçlerini içeren PM modülünün kurulması, Abap gereksinimlerinin karşılanması, Fiori Mobil Teyit Ekranı."},
+      {company:"Rönesans Holding",location:"Ankara",period:"01.2025 – 11.2025",duration:"10 Ay",sector:"Gayrimenkul / İnşaat / Sağlık",project:"S/4HANA Destek",role:"PM Danışmanı",resp:"Arızi Bakım, Planlı bakım, Abap gereksinimlerinin karşılanması, Canlı kullanım Desteği, PM bildirimleri, Anaveri aktarımı."},
+      {company:"Sumitomo Electric Bordnetze",location:"Almanya",period:"04.2025 – 10.2025",duration:"6 Ay",sector:"Otomotiv",project:"SAP S/4HANA İmplementasyonu",role:"QM Danışmanı",resp:"Kalite bildirimleri, Hammadde Girdi Kontrolleri, Analiz, Geliştirme, Süreç tasarımı, Anaveri aktarımı."},
+      {company:"Polat Makina",location:"Aydın",period:"05.2024 – 11.2024",duration:"6 Ay",sector:"Makine",project:"SAP Süreç İyileştirme",role:"PM Danışmanı",resp:"Arızi Bakım Onarım, Planlı Bakım Onarım, Ölçüm noktası ve sayaç takibi, Raporlama, Canlı Destek."},
+      {company:"Tab İlaç",location:"İstanbul",period:"07.2024 – 12.2024",duration:"5 Ay",sector:"İlaç",project:"SAP Destek",role:"QM Danışmanı",resp:"Hammadde Girdi Kontrolleri, Proses Kontrolleri, Kalite bildirimleri, Kalite Sertifikaları."},
+    ]
+  },
+  mursel: {
+    name: "Mürsel UÇAR",
+    role: "SAP Lojistik Uygulamaları Danışmanı",
+    profile: `<p style="color:var(--text2);line-height:1.8;font-size:.9rem;margin-bottom:1rem;">Mürsel UÇAR, SAP PM ve QM modüllerinde 1 yılı aşkın proje deneyimine sahiptir. Proje Hazırlık, Blueprint, Gerçekleştirme, Son Hazırlık ve Go-Live & Destek aşamalarında tecrübelidir.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;">
+        <span style="background:var(--accent-light);color:var(--accent);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP PM</span>
+        <span style="background:var(--green-light);color:var(--green);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP QM</span>
+        <span style="background:#fff7ed;color:#c2410c;padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">S/4HANA</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">Migration Cockpit</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">LSMW</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">SAP Fiori</span>
+        <span style="background:var(--bg2);color:var(--text2);padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;">Eskişehir Teknik Üniv. – End. Müh.</span>
+      </div>`,
+    projects: [
+      {company:"Rönesans Holding",sector:"İnşaat / Gayrimenkul / Enerji / Sağlık",module:"PM",type:"SAP Destek",duration:"7 Ay"},
+      {company:"Sumitomo Electric Bordnetze",sector:"Otomotiv",module:"QM",type:"S/4HANA Projesi",duration:"7 Ay"},
+      {company:"Opsan",sector:"Otomotiv",module:"PM",type:"S/4HANA Projesi",duration:"2 Ay"},
+    ],
+    details: [
+      {company:"Rönesans Holding",location:"Ankara",period:"04.2025 – 11.2025",duration:"7 Ay",sector:"İnşaat / Gayrimenkul / Enerji / Sağlık",project:"SAP Destek",role:"PM Danışmanı",resp:"PM süreçleri için canlı destek; Migration Cockpit ve LSMW ile PM veri aktarımı; bakım planlarının oluşturulması ve terminlenmesi; PM'de kataloglar, görev listeleri ve ölçüm noktası yönetimi; Önleyici Bakım siparişlerinin izlenmesi ve raporlanması."},
+      {company:"Sumitomo Electric Bordnetze",location:"Almanya",period:"04.2025 – 11.2025",duration:"7 Ay",sector:"Otomotiv",project:"S/4HANA Projesi",role:"QM Danışmanı",resp:"Test dokümanlarının hazırlanması, uygulama dokümanlarının çevrilmesi, Fiori uygulamalarında destek sağlanması."},
+      {company:"Opsan",location:"Kocaeli",period:"12.2025 – 01.2026",duration:"2 Ay",sector:"Otomotiv",project:"S/4HANA Projesi",role:"PM Danışmanı",resp:"Önleyici Bakım siparişlerinin takibi ve raporlanması; PM kapsamında kataloglar, iş listeleri ve ölçüm noktaları yönetimi; Migration Cockpit ve LSMW çalışmaları; kullanıcı dokümantasyonlarının hazırlanması."},
+    ]
+  }
+};
+
+function moduleClass(m) {
+  const l = m.toLowerCase();
+  if(l.includes('pm')) return 'pm';
+  if(l.includes('qm')) return 'qm';
+  if(l.includes('pp')) return 'pp';
+  if(l.includes('ps')) return 'ps';
+  return 'pm';
+}
+
+function openModal(key, tab) {
+  const c = consultants[key];
+  document.getElementById('modalName').textContent = c.name;
+  document.getElementById('modalRole').textContent = c.role;
+
+  // Projects tab
+  let phtml = `<div style="overflow-x:auto;"><table class="project-table">
+    <thead><tr>
+      <th>Şirket</th><th>Sektör</th><th>Modül</th><th>Proje Türü</th><th>Süre</th>
+    </tr></thead><tbody>`;
+  c.projects.forEach(p => {
+    phtml += `<tr>
+      <td class="proj-company">${p.company}</td>
+      <td><span class="proj-sector-tag">${p.sector}</span></td>
+      <td><span class="proj-module-badge ${moduleClass(p.module)}">${p.module}</span></td>
+      <td>${p.type}</td>
+      <td style="white-space:nowrap">${p.duration}</td>
+    </tr>`;
+  });
+  phtml += `</tbody></table></div>`;
+  document.getElementById('panel-projects').innerHTML = phtml;
+
+  // Details tab
+  let dhtml = '';
+  c.details.forEach(d => {
+    dhtml += `<div class="detail-item">
+      <div class="detail-company">
+        <span class="proj-module-badge ${moduleClass(d.role)}" style="font-size:.65rem">${d.role.replace(' Danışmanı','')}</span>
+        ${d.company}
+      </div>
+      <div class="detail-meta">
+        <span>📅 ${d.period}</span>
+        <span>⏱ ${d.duration}</span>
+        <span>🏭 ${d.sector}</span>
+        <span>📍 ${d.location}</span>
+      </div>
+      <div style="font-family:var(--font-mono,JetBrains Mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;">${d.project}</div>
+      <div class="detail-resp">${d.resp}</div>
+    </div>`;
+  });
+  document.getElementById('panel-details').innerHTML = dhtml;
+
+  // Profile tab
+  document.getElementById('panel-profile').innerHTML = c.profile;
+
+  // Activate correct tab
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+  const tabMap = {projects:0, details:1, profile:2};
+  document.querySelectorAll('.modal-tab')[tabMap[tab] || 0].classList.add('active');
+  document.querySelectorAll('.modal-panel')[tabMap[tab] || 0].classList.add('active');
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if(e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
